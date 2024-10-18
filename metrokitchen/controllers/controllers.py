@@ -22,7 +22,7 @@ class CustomShopController(WebsiteSale):
 
         _logger.info('Current cycle: %s', current_cycle)
 
-        published_products = request.env['product.template'].sudo().search()
+        published_products = request.env['product.template'].sudo().search([('id','>',0)])
         # [('weekday', '=', weekday.lower()), ('week_cycle', '=', current_cycle)]
         # unpublished_products = request.env['product.template'].sudo().search(['|', ('weekday', '!=', weekday.lower()), ('week_cycle', '!=', current_cycle)])
         # if published_products:
