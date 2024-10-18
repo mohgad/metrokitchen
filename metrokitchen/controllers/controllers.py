@@ -22,11 +22,12 @@ class CustomShopController(WebsiteSale):
 
         _logger.info('Current cycle: %s', current_cycle)
 
-        published_products = request.env['product.template'].sudo().search([('weekday', '=', weekday.lower()), ('week_cycle', '=', current_cycle)])
-        unpublished_products = request.env['product.template'].sudo().search(['|', ('weekday', '!=', weekday.lower()), ('week_cycle', '!=', current_cycle)])
-        if published_products:
-            published_products.write({'is_published': True})
-        unpublished_products.write({'is_published': False})
+        published_products = request.env['product.template'].sudo().search()
+        # [('weekday', '=', weekday.lower()), ('week_cycle', '=', current_cycle)]
+        # unpublished_products = request.env['product.template'].sudo().search(['|', ('weekday', '!=', weekday.lower()), ('week_cycle', '!=', current_cycle)])
+        # if published_products:
+        #     published_products.write({'is_published': True})
+        published_products.write({'is_published': True})
 
         
         return super(CustomShopController, self).shop(**post)
